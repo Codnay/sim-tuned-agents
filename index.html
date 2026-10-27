@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sim-Tuned Robot Agents</title>
+<meta name="description" content="A frontier model drives a screw on a real two-arm robot with a tool and harness setup tuned entirely in a physically measured simulation.">
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1d1d1f;
+    --muted: #5f6368;
+    --line: #e3e3e6;
+    --card: #f6f6f8;
+    --accent: #1a5fb4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121214;
+      --fg: #ececee;
+      --muted: #a0a0a8;
+      --line: #2c2c31;
+      --card: #1b1b1f;
+      --accent: #78aeff;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  main { max-width: 1000px; margin: 0 auto; padding: 48px 16px 64px; }
+  header { text-align: center; margin-bottom: 40px; }
+  h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.15; margin: 0 0 18px; letter-spacing: -0.01em; }
+  .authors { font-size: 18px; margin: 0 0 4px; }
+  .authors span { white-space: nowrap; margin: 0 10px; }
+  .affil { color: var(--muted); font-size: 15px; margin: 0; }
+  .venue { color: var(--muted); font-size: 15px; margin: 10px 0 0; }
+  h2 { font-size: 22px; margin: 44px 0 14px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+  p { margin: 0 0 14px; }
+  .abstract { max-width: 820px; margin: 0 auto; }
+  ol.steps { margin: 0 0 14px; padding-left: 22px; }
+  ol.steps li { margin: 2px 0; }
+  figure { margin: 0; background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  figure video { display: block; width: 100%; height: auto; background: #000; }
+  figcaption { font-size: 14px; color: var(--muted); padding: 8px 12px; }
+  figcaption b { color: var(--fg); }
+  .note { font-size: 14px; color: var(--muted); }
+  .table-wrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 15px; font-variant-numeric: tabular-nums; }
+  th, td { padding: 6px 10px; text-align: center; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  th:first-child, td:first-child, th:nth-child(2), td:nth-child(2) { text-align: left; }
+  thead th { color: var(--muted); font-weight: 600; }
+  tbody tr.group td { border-top: 2px solid var(--line); }
+  td.best { font-weight: 700; }
+  pre {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 16px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+  @media (max-width: 700px) {
+    main { padding-top: 32px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Sim-Tuned Robot Agents</h1>
+    <p class="authors">
+      <span>Deepanshu Rohilla</span>
+      <span>Pranay Gupta</span>
+    </p>
+    <p class="affil">Argon Robotics</p>
+    <p class="venue">CoRL 2026 Late-Breaking Results</p>
+  </header>
+
+  <section class="abstract">
+    <h2>Abstract</h2>
+    <p>Frontier models can now look at a scene, plan and write code, but getting one to do a contact-rich task on a real
+    robot is still hard. Most of the work is not in the model but in what surrounds it: the commands it can call, the
+    tools it can use and what it is told about the task. Tuning this harness on a real robot is slow, costly and risky.
+    We tune it in a physically measured simulation of the real cell instead. A frontier model, Gemini 4 Argon, drives two
+    simulated arms through a bimanual screwdriving task, and between rounds we change its tools, written skills and
+    lessons based on where it fails. We then move the same harness to the real robot without changing the model. The
+    tuned harness takes the model much further through the task than plain commands, both in simulation and on the real
+    robot, where it picks up the screwdriver, seats it on the screw and drives the screw.</p>
+  </section>
+
+  <section>
+    <h2>The task</h2>
+    <p>Two YAM arms share one table, with a camera on top and one on each wrist. The model works only from these cameras
+    and has five steps to finish:</p>
+    <ol class="steps">
+      <li>Pick up the screw.</li>
+      <li>Place it in the pilot hole of the pine box.</li>
+      <li>Pick up the screwdriver.</li>
+      <li>Place the screwdriver bit on top of the screw.</li>
+      <li>Drive the screw in.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>The full task on the real robot</h2>
+    <figure>
+      <video src="videos/real_full_task_32x.mp4" poster="videos/real_full_task_32x.jpg" controls muted loop playsinline preload="metadata"></video>
+      <figcaption><b>Gemini 4 Argon with the harness tuned in simulation</b>, real runs 16 to 19 back to back, at 32&times;
+      speed. Left wrist, top and right wrist cameras. Time spent waiting on the model is cut, and so are the few moments
+      when a person stepped in to reset the scene.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>BibTeX</h2>
+<pre>@misc{rohilla2026simtuned,
+  title  = {Sim-Tuned Robot Agents},
+  author = {Rohilla, Deepanshu and Gupta, Pranay},
+  note   = {CoRL 2026 Late-Breaking Results},
+  year   = {2026}
+}</pre>
+  </section>
+</main>
+</body>
+</html>
