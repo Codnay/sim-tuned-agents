@@ -121,6 +121,46 @@
   </section>
 
   <section>
+    <h2>Results</h2>
+    <p class="note">Runs out of 10 that reach each of the five steps. In simulation, a screw counts as driven when it
+    goes in at least 1&nbsp;mm without the box moving more than 10&nbsp;mm.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th></th><th>Harness</th><th>Screw picked</th><th>Screw in hole</th><th>Driver picked</th><th>Driver on screw</th><th>Screw driven</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Simulation</td><td>Plain commands</td><td>10</td><td>7</td><td>5</td><td>1</td><td>0</td></tr>
+          <tr><td></td><td>Tuned in simulation</td><td>10</td><td>10</td><td>9</td><td>7</td><td class="best">4</td></tr>
+          <tr class="group"><td>Real robot</td><td>Plain commands</td><td>10</td><td>2</td><td>2</td><td>0</td><td>0</td></tr>
+          <tr><td></td><td>Tuned in simulation + Python</td><td>9</td><td>7</td><td>5</td><td>3</td><td class="best">1</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Where it fails on the real robot</h2>
+    <p class="note">Failures from real runs with the harness tuned in simulation.</p>
+    <figure class="stack">
+      <video src="videos/fail_hole_miss.mp4" poster="videos/fail_hole_miss.jpg" controls muted loop playsinline preload="metadata"></video>
+      <figcaption><b>Perception:</b> the screw tip lands beside the pilot hole and slides around it. The hole is hard to see in the camera images (run 16, 4&times;).</figcaption>
+    </figure>
+    <figure class="stack">
+      <video src="videos/fail_driver_slides_off.mp4" poster="videos/fail_driver_slides_off.jpg" controls muted loop playsinline preload="metadata"></video>
+      <figcaption><b>Alignment:</b> the bit sits crooked on the screw head, and the screwdriver slides off and falls to the table (run 18, 6&times;).</figcaption>
+    </figure>
+    <figure class="stack">
+      <video src="videos/fail_bit_slips.mp4" poster="videos/fail_bit_slips.jpg" controls muted loop playsinline preload="metadata"></video>
+      <figcaption><b>Contact:</b> the bit slips off the screw head partway through the first turn (run 19, 4&times;).</figcaption>
+    </figure>
+    <figure class="stack">
+      <video src="videos/fail_release_drop.mp4" poster="videos/fail_release_drop.jpg" controls muted loop playsinline preload="metadata"></video>
+      <figcaption><b>Regrasp:</b> the turning hand opens to rewind while nothing else holds the screwdriver, and it falls onto the box (run 19, 4&times;).</figcaption>
+    </figure>
+  </section>
+
+  <section>
     <h2>BibTeX</h2>
 <pre>@misc{rohilla2026simtuned,
   title  = {Sim-Tuned Robot Agents},
