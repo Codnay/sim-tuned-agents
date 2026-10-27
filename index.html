@@ -45,6 +45,7 @@
   ol.steps li { margin: 2px 0; }
   figure { margin: 0; background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
   figure video { display: block; width: 100%; height: auto; background: #000; }
+  figure.stack { margin-top: 18px; }
   figcaption { font-size: 14px; color: var(--muted); padding: 8px 12px; }
   figcaption b { color: var(--fg); }
   .note { font-size: 14px; color: var(--muted); }
@@ -107,12 +108,15 @@
   </section>
 
   <section>
-    <h2>The full task on the real robot</h2>
+    <h2>The full task</h2>
     <figure>
-      <video src="videos/real_full_task_32x.mp4" poster="videos/real_full_task_32x.jpg" controls muted loop playsinline preload="metadata"></video>
-      <figcaption><b>Gemini 4 Argon with the harness tuned in simulation</b>, real runs 16 to 19 back to back, at 32&times;
-      speed. Left wrist, top and right wrist cameras. Time spent waiting on the model is cut, and so are the few moments
-      when a person stepped in to reset the scene.</figcaption>
+      <video src="videos/real_task.mp4" poster="videos/real_task.jpg" controls muted loop playsinline preload="metadata"></video>
+      <figcaption><b>Real robot</b>, 32&times; (runs 16 and 19; the screw placement and the turning are slowed down).
+      Left wrist, top and right wrist cameras.</figcaption>
+    </figure>
+    <figure class="stack">
+      <video src="videos/sim_task.mp4" poster="videos/sim_task.jpg" controls muted loop playsinline preload="metadata"></video>
+      <figcaption><b>Simulation</b>, same harness: the full task, one frame per command.</figcaption>
     </figure>
   </section>
 
